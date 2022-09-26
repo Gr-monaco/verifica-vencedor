@@ -7,9 +7,9 @@ import java.io.Serializable;
 
 @Getter
 public class Deck implements Serializable {
-    String sucess;
+    private String sucess;
     @JsonProperty("deck_id")
-    String Id;
-    int remaining;
-    boolean shuffled;
+    private String Id;
+    private int remaining;
+    private boolean shuffled;
 }
