@@ -39,10 +39,10 @@ public class RequestsServiceTests {
     }
 
     @Test
-     void verificaSeMaoTem5Cartas(){
-        ResponseEntity<CardHand> response = requestsService.getHand(Objects.requireNonNull(deck.getBody()).getId(),5);
+    void verificaSeMaoTem5Cartas() {
+        ResponseEntity<CardHand> response = requestsService.getHand(Objects.requireNonNull(deck.getBody()).getId(), 5);
         CardHand hand = response.getBody();
         assert hand != null;
         Assertions.assertEquals(hand.getCards().length, 5);
-     }
+    }
 }
