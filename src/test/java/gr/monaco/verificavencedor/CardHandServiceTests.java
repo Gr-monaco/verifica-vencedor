@@ -79,6 +79,18 @@ public class CardHandServiceTests {
     @Test
     void somaDeCartasK_Q_J_10_9(){
         CardHand hand = new CardHand();
+        Card card1 = new Card();
+        Card card2 = new Card();
+        Card card3 = new Card();
+        Card card4 = new Card();
+        Card card5 = new Card();
+        card1.setCode("KS");
+        card2.setCode("QS");
+        card3.setCode("JS");
+        card4.setCode("0S");
+        card5.setCode("9S");
+        Card[] cardArray = new Card[]{ card1, card2, card3, card4, card5 };
+        hand.setCards(cardArray);
         int retorno = cardHandService.SumCardValues(hand);
         log.info("retorno value: {}", retorno);
         Assertions.assertEquals(55, retorno);
