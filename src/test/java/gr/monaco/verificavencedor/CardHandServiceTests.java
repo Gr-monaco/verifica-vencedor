@@ -75,4 +75,12 @@ public class CardHandServiceTests {
         log.info("retorno value: {}", retorno);
         Assertions.assertEquals(39, retorno);
     }
+
+    @Test
+    void somaDeCartasK_Q_J_10_9(){
+        CardHand hand = new CardHand();
+        int retorno = cardHandService.SumCardValues(hand);
+        log.info("retorno value: {}", retorno);
+        Assertions.assertEquals(55, retorno);
+    }
 }
