@@ -2,11 +2,13 @@ package gr.monaco.verificavencedor.models;
 
 import lombok.Getter;
 
+import java.io.Serializable;
+
 @Getter
-public class Card {
+public class Card implements Serializable {
     private String code;
     private String image;
-    private String[] images;
-    private int value;
+    private Images images;
+    private String value;
     private String suit;
 }
