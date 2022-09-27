@@ -17,14 +17,14 @@ public class CardHandServiceTests {
     CardHandService cardHandService;
 
     @Test
-    void somaDeCartas(){
+    void somaDeCartas1_2_3_4_5(){
         CardHand hand = new CardHand();
         Card card1 = new Card();
         Card card2 = new Card();
         Card card3 = new Card();
         Card card4 = new Card();
         Card card5 = new Card();
-        card1.setCode("1S");
+        card1.setCode("AS");
         card2.setCode("2S");
         card3.setCode("3S");
         card4.setCode("4S");
@@ -34,5 +34,45 @@ public class CardHandServiceTests {
         int retorno = cardHandService.SumCardValues(hand);
         log.info("retorno value: {}", retorno);
         Assertions.assertEquals(15, retorno);
+    }
+
+    @Test
+    void somaDeCartas6_7_8_9_10(){
+        CardHand hand = new CardHand();
+        Card card1 = new Card();
+        Card card2 = new Card();
+        Card card3 = new Card();
+        Card card4 = new Card();
+        Card card5 = new Card();
+        card1.setCode("6S");
+        card2.setCode("7S");
+        card3.setCode("8S");
+        card4.setCode("9S");
+        card5.setCode("0S");
+        Card[] cardArray = new Card[]{ card1, card2, card3, card4, card5 };
+        hand.setCards(cardArray);
+        int retorno = cardHandService.SumCardValues(hand);
+        log.info("retorno value: {}", retorno);
+        Assertions.assertEquals(40, retorno);
+    }
+
+    @Test
+    void somaDeCartasA_K_Q_J_2(){
+        CardHand hand = new CardHand();
+        Card card1 = new Card();
+        Card card2 = new Card();
+        Card card3 = new Card();
+        Card card4 = new Card();
+        Card card5 = new Card();
+        card1.setCode("AS");
+        card2.setCode("KS");
+        card3.setCode("QS");
+        card4.setCode("JS");
+        card5.setCode("2S");
+        Card[] cardArray = new Card[]{ card1, card2, card3, card4, card5 };
+        hand.setCards(cardArray);
+        int retorno = cardHandService.SumCardValues(hand);
+        log.info("retorno value: {}", retorno);
+        Assertions.assertEquals(39, retorno);
     }
 }
