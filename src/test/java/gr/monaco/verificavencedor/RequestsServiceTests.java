@@ -1,8 +1,7 @@
 package gr.monaco.verificavencedor;
 
-import gr.monaco.verificavencedor.models.Card;
 import gr.monaco.verificavencedor.models.CardHand;
-import gr.monaco.verificavencedor.models.Deck;
+import gr.monaco.verificavencedor.models.DeckDTO;
 import gr.monaco.verificavencedor.services.RequestsService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
@@ -23,13 +22,13 @@ public class RequestsServiceTests {
     @Autowired
     private RequestsService requestsService;
 
-    private ResponseEntity<Deck> deck;
+    private ResponseEntity<DeckDTO> deck;
 
     @BeforeAll
     @Test
     void verificaSeRequesicaoRetornaDeckStatusCode(){
         deck = requestsService.getDeck();
-        log.info("DECK-ID: {}", Objects.requireNonNull(deck.getBody()).getId());
+        log.info("DECK-ID: {}", Objects.requireNonNull(deck.getBody()).getDeckId());
         Assertions.assertEquals(deck.getStatusCode(), HttpStatus.OK);
     }
 
@@ -40,7 +39,7 @@ public class RequestsServiceTests {
 
     @Test
     void verificaSeMaoTem5Cartas() {
-        ResponseEntity<CardHand> response = requestsService.getHand(Objects.requireNonNull(deck.getBody()).getId(), 5);
+        ResponseEntity<CardHand> response = requestsService.getHand(Objects.requireNonNull(deck.getBody()).getDeckId(), 5);
         CardHand hand = response.getBody();
         assert hand != null;
         Assertions.assertEquals(hand.getCards().length, 5);
