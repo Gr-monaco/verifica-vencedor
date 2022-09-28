@@ -115,13 +115,26 @@ public class CardHandServiceTests {
     }
 
     @Test
-    void salvarCartas(){
+    void salvarCartasEDeck(){
         ResponseEntity<DeckDTO> deck = requestsService.getDeck();
         deckRepository.save(DeckMapper.fromDTO(deck.getBody()));
         ResponseEntity<CardHandDTO> response = requestsService.getHand(Objects.requireNonNull(deck.getBody()).getDeckId(), 5);
         CardHandDTO hand = response.getBody();
         System.out.println(hand.getCards().length);
-        cardHandService.saveCardHand(hand);
+        CardHand cardHandSaved = cardHandService.saveCardHand(hand);
+
+
+        //Talvez fazer uma função de assertion?
+        log.info("Assertion carta 1: {} : {}",hand.getCards()[0].getCode(), cardHandSaved.getCardOneId());
+        Assertions.assertEquals(hand.getCards()[0].getCode(), cardHandSaved.getCardOneId());
+        log.info("Assertion carta 2: {} : {}",hand.getCards()[1].getCode(), cardHandSaved.getCardTwoId());
+        Assertions.assertEquals(hand.getCards()[1].getCode(), cardHandSaved.getCardTwoId());
+        log.info("Assertion carta 3: {} : {}",hand.getCards()[2].getCode(), cardHandSaved.getCardThreeId());
+        Assertions.assertEquals(hand.getCards()[2].getCode(), cardHandSaved.getCardThreeId());
+        log.info("Assertion carta 4: {} : {}",hand.getCards()[3].getCode(), cardHandSaved.getCardFourId());
+        Assertions.assertEquals(hand.getCards()[3].getCode(), cardHandSaved.getCardFourId());
+        log.info("Assertion carta 5: {} : {}",hand.getCards()[4].getCode(), cardHandSaved.getCardFiveId());
+        Assertions.assertEquals(hand.getCards()[4].getCode(), cardHandSaved.getCardFiveId());
 
         for (CardDTO card: hand.getCards()
              ) {
