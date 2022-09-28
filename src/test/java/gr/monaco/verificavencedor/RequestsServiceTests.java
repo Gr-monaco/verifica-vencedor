@@ -1,6 +1,6 @@
 package gr.monaco.verificavencedor;
 
-import gr.monaco.verificavencedor.models.CardHand;
+import gr.monaco.verificavencedor.models.CardHandDTO;
 import gr.monaco.verificavencedor.models.DeckDTO;
 import gr.monaco.verificavencedor.services.RequestsService;
 import lombok.extern.slf4j.Slf4j;
@@ -39,9 +39,10 @@ public class RequestsServiceTests {
 
     @Test
     void verificaSeMaoTem5Cartas() {
-        ResponseEntity<CardHand> response = requestsService.getHand(Objects.requireNonNull(deck.getBody()).getDeckId(), 5);
-        CardHand hand = response.getBody();
+        ResponseEntity<CardHandDTO> response = requestsService.getHand(Objects.requireNonNull(deck.getBody()).getDeckId(), 5);
+        CardHandDTO hand = response.getBody();
         assert hand != null;
         Assertions.assertEquals(hand.getCards().length, 5);
     }
+
 }

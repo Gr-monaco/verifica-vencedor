@@ -6,5 +6,5 @@ import lombok.Setter;
 @Getter @Setter
 public class Player {
     private String nome;
-    private CardHand cardHand;
+    private CardHandDTO cardHand;
 }
