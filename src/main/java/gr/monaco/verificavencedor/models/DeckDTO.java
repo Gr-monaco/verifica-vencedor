@@ -1,23 +1,20 @@
 package gr.monaco.verificavencedor.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
-@Entity
 @Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name = "TB_DECK")
-public class Deck {
+@Table(name="TB_DECk")
+public class DeckDTO implements Serializable {
+    private String sucess;
     @Id
+    @JsonProperty("deck_id")
     private String deckId;
     private int remaining;
+    private boolean shuffled;
 }
