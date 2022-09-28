@@ -117,7 +117,6 @@ public class CardHandServiceTests {
     @Test
     void salvarCartasEDeck(){
         ResponseEntity<DeckDTO> deck = requestsService.getDeck();
-        deckRepository.save(DeckMapper.fromDTO(deck.getBody()));
         ResponseEntity<CardHandDTO> response = requestsService.getHand(Objects.requireNonNull(deck.getBody()).getDeckId(), 5);
         CardHandDTO hand = response.getBody();
         System.out.println(hand.getCards().length);
@@ -141,5 +140,12 @@ public class CardHandServiceTests {
             Optional<Card> cardFromBase = cardRepository.findById(card.getCode());
             Assertions.assertEquals(card.getCode(),cardFromBase.get().getCode());
         }
+
+        Optional<Deck> deckFromDB = deckRepository.findById(Objects.requireNonNull(deck.getBody()).getDeckId());
+
+        log.info("Assertion deckFromDb and deck : {} : {}",Objects.requireNonNull(deck.getBody()).getDeckId(),deckFromDB.get().getDeckId());
+        Assertions.assertEquals(Objects.requireNonNull(deck.getBody()).getDeckId(), deckFromDB.get().getDeckId());
+        Assertions.assertEquals(47, deckFromDB.get().getRemaining());
+
     }
 }
