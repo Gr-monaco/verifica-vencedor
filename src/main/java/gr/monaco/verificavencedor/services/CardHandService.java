@@ -30,7 +30,7 @@ public class CardHandService {
         }
         CardHand entity = CardHandMapper.fromDTO(hand);
         CardHand cardSaved = cardHandRepository.save(entity);
-        System.out.println(cardSaved.getId()+" "+ cardSaved.getDeckId());
+
         return cardSaved;
     }
 }
