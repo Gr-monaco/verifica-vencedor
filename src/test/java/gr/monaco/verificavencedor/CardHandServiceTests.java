@@ -1,7 +1,9 @@
 package gr.monaco.verificavencedor;
 
 import gr.monaco.verificavencedor.models.*;
+import gr.monaco.verificavencedor.repository.CardHandRepository;
 import gr.monaco.verificavencedor.repository.CardRepository;
+import gr.monaco.verificavencedor.repository.DeckRepository;
 import gr.monaco.verificavencedor.services.CardHandService;
 import gr.monaco.verificavencedor.services.RequestsService;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +29,11 @@ public class CardHandServiceTests {
     @Autowired
     CardRepository cardRepository;
 
+    @Autowired
+    CardHandRepository cardHandRepository;
+
+    @Autowired
+    DeckRepository deckRepository;
     @Test
     void somaDeCartas1_2_3_4_5(){
         CardHandDTO hand = new CardHandDTO();
@@ -110,6 +117,7 @@ public class CardHandServiceTests {
     @Test
     void salvarCartas(){
         ResponseEntity<DeckDTO> deck = requestsService.getDeck();
+        deckRepository.save(DeckMapper.fromDTO(deck.getBody()));
         ResponseEntity<CardHandDTO> response = requestsService.getHand(Objects.requireNonNull(deck.getBody()).getDeckId(), 5);
         CardHandDTO hand = response.getBody();
         System.out.println(hand.getCards().length);
