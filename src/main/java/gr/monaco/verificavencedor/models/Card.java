@@ -1,16 +1,22 @@
 package gr.monaco.verificavencedor.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-public class Card implements Serializable {
+@Table(name = "TB_CARD")
+public class Card {
+    @Id
     private String code;
-    private String image;
-    private Images images;
-    private String value;
-    private String suit;
+    private String url;
 }
