@@ -23,7 +23,7 @@ public class CardHandService {
         return cardDTOList.stream().mapToInt(CardUtils::evaluate).sum();
     }
 
-    public void saveCardHand(CardHandDTO hand){
+    public CardHand saveCardHand(CardHandDTO hand){
         for (CardDTO card: hand.getCards()
              ) {
             cardRepository.save(CardMapper.fromDTO(card));
@@ -31,5 +31,6 @@ public class CardHandService {
         CardHand entity = CardHandMapper.fromDTO(hand);
         CardHand cardSaved = cardHandRepository.save(entity);
         System.out.println(cardSaved.getId()+" "+ cardSaved.getDeckId());
+        return cardSaved;
     }
 }
