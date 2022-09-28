@@ -1,6 +1,7 @@
 package gr.monaco.verificavencedor.services;
 
 import gr.monaco.verificavencedor.models.CardHandDTO;
+import gr.monaco.verificavencedor.models.Deck;
 import gr.monaco.verificavencedor.models.DeckDTO;
 import gr.monaco.verificavencedor.models.DeckMapper;
 import gr.monaco.verificavencedor.repository.DeckRepository;
@@ -30,6 +31,8 @@ public class RequestsService {
 
     public ResponseEntity<CardHandDTO> getHand(String deckId, int amountOfCards){
         ResponseEntity<CardHandDTO> cardHand = new RestTemplate().getForEntity(APIURL + deckId + "/draw/?count=" + amountOfCards, CardHandDTO.class);
+        Deck deck = DeckMapper.fromCardHandDTO(Objects.requireNonNull(cardHand.getBody()));
+        deckRepository.save(deck);
         return cardHand;
     }
 }
