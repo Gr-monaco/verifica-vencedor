@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CardHandService {
@@ -32,5 +33,16 @@ public class CardHandService {
         CardHand cardSaved = cardHandRepository.save(entity);
 
         return cardSaved;
+    }
+
+    public Optional<CardHand> findHandFromDTO(CardHandDTO cardHandDTO){
+        return cardHandRepository.findByDeckIdAndCardOneIdAndCardTwoIdAndCardThreeIdAndCardFourIdAndCardFiveId(
+                cardHandDTO.getDeckId(),
+                cardHandDTO.getCards()[0].getCode(),
+                cardHandDTO.getCards()[1].getCode(),
+                cardHandDTO.getCards()[2].getCode(),
+                cardHandDTO.getCards()[3].getCode(),
+                cardHandDTO.getCards()[4].getCode()
+        );
     }
 }

@@ -2,6 +2,7 @@ package gr.monaco.verificavencedor;
 
 import gr.monaco.verificavencedor.models.DeckDTO;
 import gr.monaco.verificavencedor.models.Game;
+import gr.monaco.verificavencedor.services.GameService;
 import gr.monaco.verificavencedor.services.RequestsService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
@@ -20,18 +21,13 @@ public class GameServiceTests {
     @Autowired
     private RequestsService requestsService;
 
-    private ResponseEntity<DeckDTO> deck;
+    @Autowired
+    GameService gameService;
 
-    @BeforeAll
-    void pegaDeckParaTestes(){
-        deck = requestsService.getDeck();
-        log.info("DECK-ID: {}", Objects.requireNonNull(deck.getBody()).getDeckId());
-        Assertions.assertEquals(deck.getStatusCode(), HttpStatus.OK);
-    }
 
     @Test
     void GeraGame(){
-
+        Game game = gameService.createGame();
     }
 
 }
