@@ -2,16 +2,16 @@ package gr.monaco.verificavencedor.services;
 
 import gr.monaco.verificavencedor.models.*;
 import gr.monaco.verificavencedor.repository.CardHandRepository;
-import gr.monaco.verificavencedor.repository.DeckRepository;
 import gr.monaco.verificavencedor.repository.GameRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
+@Slf4j
 public class GameService {
 
     @Autowired
@@ -22,6 +22,10 @@ public class GameService {
 
     @Autowired
     GameRepository gameRepository;
+
+    @Autowired
+    CardHandRepository cardHandRepository;
+
 
     public Game createGame(){
         Game game = new Game();
@@ -45,5 +49,29 @@ public class GameService {
         gameRepository.save(game);
 
         return game;
+    }
+
+    public int findWinner(Game game){
+        int sumPlayer1 = cardHandService.sumCardValuesFromCardHand(cardHandRepository.findById(game.getPlayerOneHandId()).get());
+        int sumPlayer2 = cardHandService.sumCardValuesFromCardHand(cardHandRepository.findById(game.getPlayerTwoHandId()).get());
+        int sumPlayer3 = cardHandService.sumCardValuesFromCardHand(cardHandRepository.findById(game.getPlayerThreeHandId()).get());
+        int sumPlayer4 = cardHandService.sumCardValuesFromCardHand(cardHandRepository.findById(game.getPlayerFourHandId()).get());
+        log.info("sumPlayer1 : {}", sumPlayer1);
+        log.info("sumPlayer2 : {}", sumPlayer2);
+        log.info("sumPlayer3 : {}", sumPlayer3);
+        log.info("sumPlayer4 : {}", sumPlayer4);
+
+        List<Integer> listInt = new ArrayList<>();
+        listInt.add(sumPlayer1);
+        listInt.add(sumPlayer2);
+        listInt.add(sumPlayer3);
+        listInt.add(sumPlayer4);
+
+        Set<Integer> set = new HashSet<Integer>(listInt);
+
+        if(set.size() < listInt.size()){
+            return -1;
+        }
+        return listInt.indexOf(Collections.max(listInt));
     }
 }

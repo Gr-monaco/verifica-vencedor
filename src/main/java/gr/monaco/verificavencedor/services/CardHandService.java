@@ -7,6 +7,7 @@ import gr.monaco.verificavencedor.utils.CardUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,7 @@ public class CardHandService {
 
     @Autowired
     CardHandRepository cardHandRepository;
-    public int SumCardValues(CardHandDTO hand){
+    public int sumCardValuesFromCardHandDTO(CardHandDTO hand){
         List<CardDTO> cardDTOList = Arrays.asList(hand.getCards());
         return cardDTOList.stream().mapToInt(CardUtils::evaluate).sum();
     }
@@ -44,5 +45,15 @@ public class CardHandService {
                 cardHandDTO.getCards()[3].getCode(),
                 cardHandDTO.getCards()[4].getCode()
         );
+    }
+
+    public int sumCardValuesFromCardHand(CardHand hand){
+        List<String> listOfCodes = new ArrayList<>();
+        listOfCodes.add(hand.getCardOneId());
+        listOfCodes.add(hand.getCardTwoId());
+        listOfCodes.add(hand.getCardThreeId());
+        listOfCodes.add(hand.getCardFourId());
+        listOfCodes.add(hand.getCardFiveId());
+        return listOfCodes.stream().mapToInt(CardUtils::evaluate).sum();
     }
 }

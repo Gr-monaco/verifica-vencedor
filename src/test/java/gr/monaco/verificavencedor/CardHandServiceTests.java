@@ -49,7 +49,7 @@ public class CardHandServiceTests {
         cardDTO5.setCode("5S");
         CardDTO[] cardDTOArray = new CardDTO[]{cardDTO1, cardDTO2, cardDTO3, cardDTO4, cardDTO5};
         hand.setCards(cardDTOArray);
-        int retorno = cardHandService.SumCardValues(hand);
+        int retorno = cardHandService.sumCardValuesFromCardHandDTO(hand);
         log.info("retorno value: {}", retorno);
         Assertions.assertEquals(15, retorno);
     }
@@ -69,7 +69,7 @@ public class CardHandServiceTests {
         cardDTO5.setCode("0S");
         CardDTO[] cardDTOArray = new CardDTO[]{cardDTO1, cardDTO2, cardDTO3, cardDTO4, cardDTO5};
         hand.setCards(cardDTOArray);
-        int retorno = cardHandService.SumCardValues(hand);
+        int retorno = cardHandService.sumCardValuesFromCardHandDTO(hand);
         log.info("retorno value: {}", retorno);
         Assertions.assertEquals(40, retorno);
     }
@@ -89,7 +89,7 @@ public class CardHandServiceTests {
         cardDTO5.setCode("2S");
         CardDTO[] cardDTOArray = new CardDTO[]{cardDTO1, cardDTO2, cardDTO3, cardDTO4, cardDTO5};
         hand.setCards(cardDTOArray);
-        int retorno = cardHandService.SumCardValues(hand);
+        int retorno = cardHandService.sumCardValuesFromCardHandDTO(hand);
         log.info("retorno value: {}", retorno);
         Assertions.assertEquals(39, retorno);
     }
@@ -109,7 +109,7 @@ public class CardHandServiceTests {
         cardDTO5.setCode("9S");
         CardDTO[] cardDTOArray = new CardDTO[]{cardDTO1, cardDTO2, cardDTO3, cardDTO4, cardDTO5};
         hand.setCards(cardDTOArray);
-        int retorno = cardHandService.SumCardValues(hand);
+        int retorno = cardHandService.sumCardValuesFromCardHandDTO(hand);
         log.info("retorno value: {}", retorno);
         Assertions.assertEquals(55, retorno);
     }
