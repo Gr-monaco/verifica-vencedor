@@ -1,9 +1,6 @@
 package gr.monaco.verificavencedor.services;
 
-import gr.monaco.verificavencedor.models.CardHandDTO;
-import gr.monaco.verificavencedor.models.Deck;
-import gr.monaco.verificavencedor.models.DeckDTO;
-import gr.monaco.verificavencedor.models.DeckMapper;
+import gr.monaco.verificavencedor.models.*;
 import gr.monaco.verificavencedor.repository.DeckRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +19,9 @@ public class RequestsService {
     @Autowired
     DeckRepository deckRepository;
 
+    @Autowired
+    CardHandService cardHandService;
+
     public ResponseEntity<DeckDTO> getDeck(){
         ResponseEntity<DeckDTO> deckResponse = new RestTemplate().getForEntity(APIURL + "new/shuffle/?deck_count=1", DeckDTO.class);
         //Refatorar para existir um DeckService
@@ -30,9 +30,12 @@ public class RequestsService {
     }
 
     public ResponseEntity<CardHandDTO> getHand(String deckId, int amountOfCards){
-        ResponseEntity<CardHandDTO> cardHand = new RestTemplate().getForEntity(APIURL + deckId + "/draw/?count=" + amountOfCards, CardHandDTO.class);
-        Deck deck = DeckMapper.fromCardHandDTO(Objects.requireNonNull(cardHand.getBody()));
+        ResponseEntity<CardHandDTO> forEntity = new RestTemplate().getForEntity(APIURL + deckId + "/draw/?count=" + amountOfCards, CardHandDTO.class);
+        CardHandDTO cardHandDTO = forEntity.getBody();
+        assert cardHandDTO != null;
+        cardHandService.saveCardHand(cardHandDTO);
+        Deck deck = DeckMapper.fromCardHandDTO(Objects.requireNonNull(forEntity.getBody()));
         deckRepository.save(deck);
-        return cardHand;
+        return forEntity;
     }
 }
