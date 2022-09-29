@@ -31,4 +31,9 @@ public class CardHand {
     private String cardFourId;
 
     private String cardFiveId;
+
+    @Override
+    public String toString() {
+        return cardOneId +" "+cardTwoId+" "+cardThreeId+" "+cardFourId+" "+cardFiveId;
+    }
 }
