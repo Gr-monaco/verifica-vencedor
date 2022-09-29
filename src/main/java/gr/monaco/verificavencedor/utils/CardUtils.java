@@ -1,6 +1,6 @@
 package gr.monaco.verificavencedor.utils;
 
-import gr.monaco.verificavencedor.models.CardDTO;
+import gr.monaco.verificavencedor.DTOs.CardDTO;
 
 public class CardUtils {
 

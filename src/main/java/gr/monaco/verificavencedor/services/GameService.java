@@ -1,10 +1,11 @@
 package gr.monaco.verificavencedor.services;
 
-import gr.monaco.verificavencedor.models.*;
+import gr.monaco.verificavencedor.entities.CardHand;
+import gr.monaco.verificavencedor.entities.Game;
+import gr.monaco.verificavencedor.DTOs.*;
 import gr.monaco.verificavencedor.repository.CardHandRepository;
 import gr.monaco.verificavencedor.repository.GameRepository;
 import lombok.extern.slf4j.Slf4j;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

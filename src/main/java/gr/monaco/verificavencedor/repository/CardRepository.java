@@ -1,6 +1,6 @@
 package gr.monaco.verificavencedor.repository;
 
-import gr.monaco.verificavencedor.models.Card;
+import gr.monaco.verificavencedor.entities.Card;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

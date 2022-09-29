@@ -1,6 +1,9 @@
 package gr.monaco.verificavencedor.services;
 
-import gr.monaco.verificavencedor.models.*;
+import gr.monaco.verificavencedor.entities.CardHand;
+import gr.monaco.verificavencedor.mappers.CardHandMapper;
+import gr.monaco.verificavencedor.mappers.CardMapper;
+import gr.monaco.verificavencedor.DTOs.*;
 import gr.monaco.verificavencedor.repository.CardHandRepository;
 import gr.monaco.verificavencedor.repository.CardRepository;
 import gr.monaco.verificavencedor.utils.CardUtils;

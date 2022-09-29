@@ -1,8 +1,8 @@
 package gr.monaco.verificavencedor;
 
-import gr.monaco.verificavencedor.models.Deck;
-import gr.monaco.verificavencedor.models.DeckDTO;
-import gr.monaco.verificavencedor.models.DeckMapper;
+import gr.monaco.verificavencedor.entities.Deck;
+import gr.monaco.verificavencedor.DTOs.DeckDTO;
+import gr.monaco.verificavencedor.mappers.DeckMapper;
 import gr.monaco.verificavencedor.repository.DeckRepository;
 import gr.monaco.verificavencedor.services.RequestsService;
 import org.junit.jupiter.api.Assertions;

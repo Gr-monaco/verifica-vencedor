@@ -1,7 +1,7 @@
 package gr.monaco.verificavencedor;
 
-import gr.monaco.verificavencedor.models.CardHandDTO;
-import gr.monaco.verificavencedor.models.DeckDTO;
+import gr.monaco.verificavencedor.DTOs.CardHandDTO;
+import gr.monaco.verificavencedor.DTOs.DeckDTO;
 import gr.monaco.verificavencedor.services.RequestsService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;

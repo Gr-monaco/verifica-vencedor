@@ -1,6 +1,8 @@
 package gr.monaco.verificavencedor.services;
 
-import gr.monaco.verificavencedor.models.*;
+import gr.monaco.verificavencedor.entities.Deck;
+import gr.monaco.verificavencedor.mappers.DeckMapper;
+import gr.monaco.verificavencedor.DTOs.*;
 import gr.monaco.verificavencedor.repository.DeckRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

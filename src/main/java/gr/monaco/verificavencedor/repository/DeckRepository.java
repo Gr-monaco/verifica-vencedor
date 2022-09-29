@@ -1,7 +1,6 @@
 package gr.monaco.verificavencedor.repository;
 
-import gr.monaco.verificavencedor.models.Deck;
-import gr.monaco.verificavencedor.models.DeckDTO;
+import gr.monaco.verificavencedor.entities.Deck;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

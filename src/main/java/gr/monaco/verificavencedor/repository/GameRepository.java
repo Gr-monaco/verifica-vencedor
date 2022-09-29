@@ -1,6 +1,6 @@
 package gr.monaco.verificavencedor.repository;
 
-import gr.monaco.verificavencedor.models.Game;
+import gr.monaco.verificavencedor.entities.Game;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

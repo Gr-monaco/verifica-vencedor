@@ -1,5 +1,6 @@
-package gr.monaco.verificavencedor.models;
+package gr.monaco.verificavencedor.DTOs;
 
+import gr.monaco.verificavencedor.entities.Images;
 import lombok.Getter;
 import lombok.Setter;
 

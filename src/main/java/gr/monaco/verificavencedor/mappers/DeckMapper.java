@@ -1,4 +1,8 @@
-package gr.monaco.verificavencedor.models;
+package gr.monaco.verificavencedor.mappers;
+
+import gr.monaco.verificavencedor.entities.Deck;
+import gr.monaco.verificavencedor.DTOs.CardHandDTO;
+import gr.monaco.verificavencedor.DTOs.DeckDTO;
 
 public class DeckMapper {
 

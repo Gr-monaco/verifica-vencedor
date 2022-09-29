@@ -1,4 +1,7 @@
-package gr.monaco.verificavencedor.models;
+package gr.monaco.verificavencedor.mappers;
+
+import gr.monaco.verificavencedor.entities.Card;
+import gr.monaco.verificavencedor.DTOs.CardDTO;
 
 public class CardMapper {
     public static Card fromDTO(CardDTO cardDTO){

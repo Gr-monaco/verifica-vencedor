@@ -1,5 +1,8 @@
-package gr.monaco.verificavencedor.models;
+package gr.monaco.verificavencedor.mappers;
 
+
+import gr.monaco.verificavencedor.entities.CardHand;
+import gr.monaco.verificavencedor.DTOs.CardHandDTO;
 
 public class CardHandMapper {
 

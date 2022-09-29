@@ -1,7 +1,7 @@
 package gr.monaco.verificavencedor;
 
-import gr.monaco.verificavencedor.models.CardHand;
-import gr.monaco.verificavencedor.models.Game;
+import gr.monaco.verificavencedor.entities.CardHand;
+import gr.monaco.verificavencedor.entities.Game;
 import gr.monaco.verificavencedor.repository.CardHandRepository;
 import gr.monaco.verificavencedor.services.CardHandService;
 import gr.monaco.verificavencedor.services.GameService;
@@ -312,6 +312,9 @@ public class GameServiceTests {
 
         String saida = gameService.endGameText(game);
 
-        System.out.println(saida);
+        Assertions.assertEquals("Jogador 1 : [ AS 2S 3S 4S 5S ]\n" +
+                "Jogador 2 : [ 8S 9S 2S AS JS ]\n" +
+                "Jogador 3 : [ 8S 9S 2S AS JS ]\n" +
+                "Jogador 4 : [ 2S 2S 5S 7S 2S ]", saida);
     }
 }
