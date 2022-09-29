@@ -28,6 +28,7 @@ public class GameServiceTests {
     @Test
     void GeraGame(){
         Game game = gameService.createGame();
+        Assertions.assertNotNull(game);
     }
 
 }
