@@ -1,6 +1,9 @@
 package gr.monaco.verificavencedor;
 
 import gr.monaco.verificavencedor.models.DeckDTO;
+import gr.monaco.verificavencedor.models.Game;
+import gr.monaco.verificavencedor.services.GameService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,10 +16,12 @@ public class VerificavencedorApplication implements CommandLineRunner {
 		SpringApplication.run(VerificavencedorApplication.class, args).close();
 	}
 
+	@Autowired
+	GameService gameService;
 	@Override
 	public void run(String... args) throws Exception {
-		RestTemplate restTemplate = new RestTemplate();
-		DeckDTO deckDTO = restTemplate.getForObject("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1", DeckDTO.class);
-		System.out.println(deckDTO.getDeckId());
+		Game game = gameService.createGame();
+		int vencedor = gameService.findWinner(game);
+		System.out.println(vencedor);
 	}
 }
