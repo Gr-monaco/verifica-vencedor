@@ -11,4 +11,8 @@ public interface CardHandRepository extends JpaRepository<CardHand, Long> {
 
     @Override
     <S extends CardHand> S save(S entity);
+
+    Optional<CardHand> findByDeckIdAndCardOneIdAndCardTwoIdAndCardThreeIdAndCardFourIdAndCardFiveId(String deckId, String cardOneId, String cardTwoId,
+                                                                                     String cardThreeId, String cardFourId,
+                                                                                     String cardFiveId);
 }
