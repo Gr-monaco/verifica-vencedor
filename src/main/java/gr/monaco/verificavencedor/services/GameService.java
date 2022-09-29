@@ -52,10 +52,20 @@ public class GameService {
     }
 
     public int findWinner(Game game){
-        int sumPlayer1 = cardHandService.sumCardValuesFromCardHand(cardHandRepository.findById(game.getPlayerOneHandId()).get());
-        int sumPlayer2 = cardHandService.sumCardValuesFromCardHand(cardHandRepository.findById(game.getPlayerTwoHandId()).get());
-        int sumPlayer3 = cardHandService.sumCardValuesFromCardHand(cardHandRepository.findById(game.getPlayerThreeHandId()).get());
-        int sumPlayer4 = cardHandService.sumCardValuesFromCardHand(cardHandRepository.findById(game.getPlayerFourHandId()).get());
+        CardHand handOne = cardHandRepository.findById(game.getPlayerOneHandId()).get();
+        int sumPlayer1 = cardHandService.sumCardValuesFromCardHand(handOne);
+        CardHand handTwo = cardHandRepository.findById(game.getPlayerTwoHandId()).get();
+        int sumPlayer2 = cardHandService.sumCardValuesFromCardHand(handTwo);
+        CardHand handThree = cardHandRepository.findById(game.getPlayerThreeHandId()).get();
+        int sumPlayer3 = cardHandService.sumCardValuesFromCardHand(handThree);
+        CardHand handFour = cardHandRepository.findById(game.getPlayerFourHandId()).get();
+        int sumPlayer4 = cardHandService.sumCardValuesFromCardHand(handFour);
+
+        log.info("handPlayer1 : {}", handOne);
+        log.info("handPlayer2 : {}", handTwo);
+        log.info("handPlayer3 : {}", handThree);
+        log.info("handPlayer4 : {}", handFour);
+
         log.info("sumPlayer1 : {}", sumPlayer1);
         log.info("sumPlayer2 : {}", sumPlayer2);
         log.info("sumPlayer3 : {}", sumPlayer3);
