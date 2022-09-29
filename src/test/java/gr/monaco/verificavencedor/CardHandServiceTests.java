@@ -120,7 +120,7 @@ public class CardHandServiceTests {
         ResponseEntity<CardHandDTO> response = requestsService.getHand(Objects.requireNonNull(deck.getBody()).getDeckId(), 5);
         CardHandDTO hand = response.getBody();
         System.out.println(hand.getCards().length);
-        Optional<CardHand> cardHandDB = cardHandRepository.findByDeckIdAndCardOneIdAndCardTwoIdAndCardThreeIdAndCardFourIdAndCardFiveId(
+        CardHand cardHandSaved = cardHandRepository.findCardHand(
                 hand.getDeckId(),
                 hand.getCards()[0].getCode(),
                 hand.getCards()[1].getCode(),
@@ -128,7 +128,6 @@ public class CardHandServiceTests {
                 hand.getCards()[3].getCode(),
                 hand.getCards()[4].getCode()
         );
-        CardHand cardHandSaved = cardHandDB.get();
 
         //Talvez fazer uma função de assertion?
         log.info("Assertion carta 1: {} : {}",hand.getCards()[0].getCode(), cardHandSaved.getCardOneId());
