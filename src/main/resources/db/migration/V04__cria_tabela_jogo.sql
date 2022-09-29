@@ -8,5 +8,5 @@ CREATE TABLE TB_GAME(
     FOREIGN KEY (player_one_hand_id) REFERENCES TB_CARD_HAND(id),
     FOREIGN KEY (player_two_hand_id) REFERENCES TB_CARD_HAND(id),
     FOREIGN KEY (player_three_hand_id) REFERENCES TB_CARD_HAND(id),
-    FOREIGN KEY (player_four_hand_id) REFERENCES TB_CARD_HAND(id),
+    FOREIGN KEY (player_four_hand_id) REFERENCES TB_CARD_HAND(id)
 )
