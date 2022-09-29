@@ -4,6 +4,7 @@ import gr.monaco.verificavencedor.models.*;
 import gr.monaco.verificavencedor.repository.CardHandRepository;
 import gr.monaco.verificavencedor.repository.GameRepository;
 import lombok.extern.slf4j.Slf4j;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -83,5 +84,51 @@ public class GameService {
             return -1;
         }
         return listInt.indexOf(Collections.max(listInt));
+    }
+
+    public String endGameText(Game game){
+        String jogadorVencedor = "";
+        int winner = findWinner(game);
+        switch (winner) {
+            case -1 -> jogadorVencedor = "empate";
+            case 0 -> jogadorVencedor = "Jogador 1";
+            case 1 -> jogadorVencedor = "Jogador 2";
+            case 2 -> jogadorVencedor = "Jogador 3";
+            case 3 -> jogadorVencedor = "Jogador 4";
+            default -> jogadorVencedor = "erro"; //TODO: Adicionar exception
+        }
+
+        if (jogadorVencedor.equals("empate")){
+            return pegaEmpate(game);
+        }
+        return vencedorUnido(jogadorVencedor, winner,game);
+    }
+
+    public String vencedorUnido(String vencedorNome, int vencedorIndex, Game game){
+        return String.format("Vencedor é %s com %d pontos.", vencedorNome, pegaPontoJogadorEspecifico(vencedorIndex, game));
+    }
+
+    public int pegaPontoJogadorEspecifico(int posicaoIndex, Game game){
+        int pontos = 0;
+        switch (posicaoIndex){
+            case 0 -> pontos = cardHandService.sumCardValuesFromCardHand(cardHandRepository.findById(game.getPlayerOneHandId()).get());
+            case 1 -> pontos = cardHandService.sumCardValuesFromCardHand(cardHandRepository.findById(game.getPlayerTwoHandId()).get());
+            case 2 -> pontos = cardHandService.sumCardValuesFromCardHand(cardHandRepository.findById(game.getPlayerThreeHandId()).get());
+            case 3 -> pontos = cardHandService.sumCardValuesFromCardHand(cardHandRepository.findById(game.getPlayerFourHandId()).get());
+            default -> pontos = 0;
+        }
+        return pontos;
+    }
+
+    public String pegaEmpate(Game game){
+        CardHand cardHandOne = cardHandRepository.findById(game.getPlayerOneHandId()).get();
+        CardHand cardHandTwo = cardHandRepository.findById(game.getPlayerTwoHandId()).get();
+        CardHand cardHandThree = cardHandRepository.findById(game.getPlayerThreeHandId()).get();
+        CardHand cardHandFour = cardHandRepository.findById(game.getPlayerFourHandId()).get();
+        String retorno = "Jogador 1 : " + cardHandOne.toString()+ "\nJogador 2 : "+cardHandTwo.toString()+"\nJogador 3 : "+ cardHandThree.toString()+ "\nJogador 4 : "+cardHandFour.toString();
+
+
+
+        return retorno;
     }
 }

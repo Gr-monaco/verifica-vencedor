@@ -34,6 +34,6 @@ public class CardHand {
 
     @Override
     public String toString() {
-        return cardOneId +" "+cardTwoId+" "+cardThreeId+" "+cardFourId+" "+cardFiveId;
+        return "[ "+cardOneId +" "+cardTwoId+" "+cardThreeId+" "+cardFourId+" "+cardFiveId+" ]";
     }
 }

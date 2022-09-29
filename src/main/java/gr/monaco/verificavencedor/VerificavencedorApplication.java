@@ -22,6 +22,7 @@ public class VerificavencedorApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Game game = gameService.createGame();
 		int vencedor = gameService.findWinner(game);
-		System.out.println(vencedor);
+		String saida = gameService.endGameText(game);
+		System.out.println(saida);
 	}
 }
