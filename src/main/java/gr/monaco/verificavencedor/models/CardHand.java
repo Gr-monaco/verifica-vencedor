@@ -30,6 +30,5 @@ public class CardHand {
 
     private String cardFourId;
 
-    @Column(name = "cardFiveId")
     private String cardFiveId;
 }
