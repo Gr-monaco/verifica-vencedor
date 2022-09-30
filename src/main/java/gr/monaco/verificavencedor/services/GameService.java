@@ -128,8 +128,24 @@ public class GameService {
         CardHand cardHandFour = cardHandRepository.findById(game.getPlayerFourHandId()).get();
         String retorno = "Jogador 1 : " + cardHandOne.toString()+ "\nJogador 2 : "+cardHandTwo.toString()+"\nJogador 3 : "+ cardHandThree.toString()+ "\nJogador 4 : "+cardHandFour.toString();
 
-
-
         return retorno;
+    }
+
+    public GameDTO completaDTO(GameDTO gameDTO){
+        CardHand cardHandOne = cardHandRepository.findById(gameDTO.getPlayerOneHandId()).get();
+        CardHand cardHandTwo = cardHandRepository.findById(gameDTO.getPlayerTwoHandId()).get();
+        CardHand cardHandThree = cardHandRepository.findById(gameDTO.getPlayerThreeHandId()).get();
+        CardHand cardHandFour = cardHandRepository.findById(gameDTO.getPlayerFourHandId()).get();
+        gameDTO.setPlayerOneHand(cardHandOne.toString());
+        gameDTO.setPlayerTwoHand(cardHandTwo.toString());
+        gameDTO.setPlayerThreeHand(cardHandThree.toString());
+        gameDTO.setPlayerFourHand(cardHandFour.toString());
+        gameDTO.setPlayerOneHandPoints(cardHandService.sumCardValuesFromCardHand(cardHandOne));
+        gameDTO.setPlayerTwoHandPoints(cardHandService.sumCardValuesFromCardHand(cardHandTwo));
+        gameDTO.setPlayerThreeHandPoints(cardHandService.sumCardValuesFromCardHand(cardHandThree));
+        gameDTO.setPlayerFourHandPoints(cardHandService.sumCardValuesFromCardHand(cardHandFour));
+        gameDTO.setMessage(endGameText(gameRepository.findById(gameDTO.getGameId()).get()));
+        gameDTO.setIndexOfWinner(findWinner(gameRepository.findById(gameDTO.getGameId()).get()));
+        return gameDTO;
     }
 }

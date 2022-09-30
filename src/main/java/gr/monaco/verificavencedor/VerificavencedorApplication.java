@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class VerificavencedorApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
-		SpringApplication.run(VerificavencedorApplication.class, args).close();
+		SpringApplication.run(VerificavencedorApplication.class, args);
 	}
 
 	@Autowired
